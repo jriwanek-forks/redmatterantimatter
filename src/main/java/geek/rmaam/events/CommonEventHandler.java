@@ -4,6 +4,8 @@ import java.util.Objects;
 
 import geek.rmaam.RedMatterAndAntimatter;
 import geek.rmaam.init.ModItems;
+import geek.rmaam.items.AntiMatter;
+import geek.rmaam.items.RedMatter;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
@@ -16,9 +18,12 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.EntityEntry;
 import net.minecraftforge.fml.relauncher.Side;
+import slimeknights.tconstruct.library.TinkerRegistry;
 
 @Mod.EventBusSubscriber(value = { Side.CLIENT, Side.SERVER }, modid = RedMatterAndAntimatter.MODID)
 public final class CommonEventHandler {
+	
+	
 
 	/**
 	 *
@@ -69,6 +74,10 @@ public final class CommonEventHandler {
 		event.getRegistry().register(setupItem(ModItems.AntiMatter, "antimatter"));
 		event.getRegistry().register(setupItem(ModItems.RedMatter, "redmatter"));
 		event.getRegistry().register(setupItem(ModItems.ThePredicament, "thepredicament"));
+		
+		// Tinkers Stuff
+		TinkerRegistry.addMaterial(new AntiMatter());
+		TinkerRegistry.addMaterial(new RedMatter());
 	}
 
 	@SubscribeEvent
