@@ -54,10 +54,10 @@ repositories {
 }
 
 dependencies {
-    deobfCompile ("slimeknights:TConstruct:${mc_version}-${tconstruct_version}:deobf") {
+    deobfCompile ("slimeknights:TConstruct:${mc_version}-${tconstruct_version}") {
       	  exclude group: 'mezz.jei'
     }
-  	deobfCompile ("slimeknights.mantle:Mantle:${mantle_version}:deobf") {
+  	deobfCompile ("slimeknights.mantle:Mantle:${mantle_version}") {
         exclude group: 'mezz.jei'
     }
 }
