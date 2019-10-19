@@ -6,6 +6,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class ThePredicament extends Item {
@@ -13,8 +14,16 @@ public class ThePredicament extends Item {
 
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
-		if(handIn.equals(hand)) {
-			playerIn.respawnPlayer();
+		BlockPos playerSpawnLocation = playerIn.getBedLocation(playerIn.getSpawnDimension());
+		if (playerSpawnLocation == null) {
+			playerSpawnLocation = worldIn.getSpawnPoint();
+		}
+		if(handIn == hand) {
+			if (playerIn.dimension != playerIn.getSpawnDimension()) {
+				playerIn.changeDimension(playerIn.getSpawnDimension());
+			}
+				playerIn.attemptTeleport(playerSpawnLocation.getX(), playerSpawnLocation.getY(), playerSpawnLocation.getZ());
+			
 		}
 
 		return new ActionResult<ItemStack>(EnumActionResult.PASS, playerIn.getHeldItem(handIn));
